@@ -9,7 +9,6 @@ import (
 	"os"
 	"fmt"
 	"bufio"
-	//"regexp"
 	"regexp/syntax"
 	"regexp"
 	"html"
@@ -71,15 +70,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	//log.Println(string(data))
-
 	re, err := syntax.Parse("<textarea class=\"form-control\" name=\"struct\" readonly=\"true\">(.*)</textarea>", syntax.DotNL | syntax.OneLine)
 	matches := regexp.MustCompile(re.String()).FindAllStringSubmatch(string(data), -1)
 	log.Println(html.UnescapeString(matches[0][1]))
-
-	//log.Println(re.FindAllStringSubmatch(string(data), -1))
-	//if matches == nil {
-	//	log.Fatal("Cannot find result on page")
-	//}
 
 }

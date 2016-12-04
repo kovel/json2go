@@ -1,20 +1,18 @@
 package main
 
 import (
-	"net/http"
-	"net/url"
+	"bufio"
 	"flag"
+	"fmt"
+	"html"
 	"io/ioutil"
 	"log"
+	"net/http"
+	"net/url"
 	"os"
-	"fmt"
-	"bufio"
-	"regexp/syntax"
 	"regexp"
-	"html"
+	"regexp/syntax"
 )
-
-
 
 func main() {
 	var jsonUrl string
@@ -70,7 +68,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	re, err := syntax.Parse("<textarea class=\"form-control\" name=\"struct\" readonly=\"true\">(.*)</textarea>", syntax.DotNL | syntax.OneLine)
+	re, err := syntax.Parse("<textarea class=\"form-control\" name=\"struct\" readonly=\"true\">(.*)</textarea>", syntax.DotNL|syntax.OneLine)
 	matches := regexp.MustCompile(re.String()).FindAllStringSubmatch(string(data), -1)
 	log.Println(html.UnescapeString(matches[0][1]))
 

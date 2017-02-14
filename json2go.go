@@ -20,7 +20,7 @@ func main() {
 	help := flag.Bool("help", false, "Print help")
 	flag.Parse()
 
-	if help {
+	if *help {
 		flag.PrintDefaults()
 		return
 	}
@@ -29,15 +29,15 @@ func main() {
 
 	var jsonString string
 
-	if len(filePath) > 0 {
-		data, err := ioutil.ReadFile(filePath)
+	if len(*filePath) > 0 {
+		data, err := ioutil.ReadFile(*filePath)
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		jsonString = string(data)
-	} else if len(jsonUrl) > 0 {
-		resp, err := client.Get(jsonUrl)
+	} else if len(*jsonUrl) > 0 {
+		resp, err := client.Get(*jsonUrl)
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -15,11 +15,15 @@ import (
 )
 
 func main() {
-	var jsonUrl string
-	var filePath string
-	flag.StringVar(&jsonUrl, "url", "", "URL to JSON file/response")
-	flag.StringVar(&filePath, "file", "", "Path to JSON file")
+	jsonUrl := flag.String("url", "", "URL to JSON file/response")
+	filePath := flag.String("file", "", "Path to JSON file")
+	help := flag.Bool("help", false, "Print help")
 	flag.Parse()
+
+	if help {
+		flag.PrintDefaults()
+		return
+	}
 
 	client := http.DefaultClient
 
